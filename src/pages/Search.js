@@ -36,7 +36,6 @@ async function validateISBNAndSearchBook() {
         const bookPageCount = bookInfo["pageCount"];
         const bookInfoLink = bookInfo["infoLink"];
         const bookImageLink = bookInfo["imageLinks"]["thumbnail"];
-        console.log(bookTitle);
 
         const card = document.createElement("div");
         card.classList.add("card");
@@ -46,8 +45,6 @@ async function validateISBNAndSearchBook() {
         cardImg.classList.add("card-img-top");
         cardImg.src = bookImageLink;
         cardImg.alt = bookTitle;
-        cardImg.stylewidth = "286px";
-        cardImg.style.height = "180px";
 
         const cardBody = document.createElement("div");
         cardBody.classList.add("card-body");
@@ -59,6 +56,8 @@ async function validateISBNAndSearchBook() {
         const cardText = document.createElement("p");
         cardText.classList.add("card-text");
         if (bookDescription != undefined) cardText.innerText = bookDescription;
+
+        /* TODO - ADD A SEE MORE THAT REDIRECTS */
 
         cardBody.append(cardTitle, cardText);
         card.append(cardImg, cardBody);
