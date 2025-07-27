@@ -1,26 +1,54 @@
 import Button from "react-bootstrap/Button";
 import "./App.css";
 
-const bookIDInput = document.getElementById("bookID");
-const textArea = document.getElementById("textArea");
+const API_KEY = "AIzaSyAZzjawqizvFq1A5EUgDH-KzKDTKHiIu9M";
+const CLIENT_ID =
+  "606450926181-l0fdedurbmeagetom0dt83bnb89itpi8.apps.googleusercontent.com";
 
-function handleClick() {
-  if (bookIDInput.value != null) textArea.value = bookIDInput.value;
-  else return false;
+async function validateISBNAndSearchBook() {
+  let searchInput = document.getElementById("search-input");
+  let textArea = document.getElementById("textArea");
+
+  if (searchInput.value === "") alert("Please search for something!");
+  else {
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchInput.value}&key:${API_KEY}`
+      );
+      if (!response.ok) {
+        throw new Error("BOOK NOT FOUND");
+      }
+
+      const data = await response.json();
+
+      const books = data.items;
+      console.log(books.length);
+      books.forEach((book) => {
+        const bookInfo = book.volumeInfo;
+        const bookTitle = bookInfo["title"];
+        textArea.value += bookTitle + ", ";
+        console.log(bookTitle);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    searchInput.value = "";
+  }
 }
 
 function App() {
   return (
     <div className="App">
       <h1>Hi!!</h1>
-      <input id="bookID" type="text" />
+      <input id="search-input" type="text" placeholder="Search for something" />
       <br></br>
       <Button
         variant="primary"
         style={{ margin: "10px" }}
-        onClick={handleClick}
+        onClick={validateISBNAndSearchBook}
       >
-        Submit
+        Search
       </Button>
       <br></br>
       <textarea
