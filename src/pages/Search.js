@@ -1,9 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import Card from "react-bootstrap/Card";
-import { createElement } from "react";
-import API_KEY from "../App";
+
+const API_KEY = "AIzaSyAZzjawqizvFq1A5EUgDH-KzKDTKHiIu9M";
+// const CLIENT_ID = "606450926181-l0fdedurbmeagetom0dt83bnb89itpi8.apps.googleusercontent.com";
+
 
 async function validateISBNAndSearchBook() {
   let searchInput = document.getElementById("search-input");
@@ -25,21 +26,22 @@ async function validateISBNAndSearchBook() {
       const data = await response.json();
 
       const books = data.items;
-      console.log(books.length);
+
       books.forEach((book) => {
         const bookInfo = book.volumeInfo;
         const bookTitle = bookInfo["title"];
-        const bookAuthors = bookInfo["authors"];
-        const bookPublisher = bookInfo["publisher"];
-        const bookPublishedDate = bookInfo["publishedDate"];
+        // const bookAuthors = bookInfo["authors"];
+        // const bookPublisher = bookInfo["publisher"];
+        // const bookPublishedDate = bookInfo["publishedDate"];
         const bookDescription = bookInfo["description"];
-        const bookPageCount = bookInfo["pageCount"];
+        // const bookPageCount = bookInfo["pageCount"];
         const bookInfoLink = bookInfo["infoLink"];
         const bookImageLink = bookInfo["imageLinks"]["thumbnail"];
 
         const card = document.createElement("div");
         card.classList.add("card");
-        card.style.width = "18rem";
+        card.style.width = "13rem";
+        card.style.margin = "20px";
 
         const cardImg = document.createElement("img");
         cardImg.classList.add("card-img-top");
@@ -55,11 +57,17 @@ async function validateISBNAndSearchBook() {
 
         const cardText = document.createElement("p");
         cardText.classList.add("card-text");
-        if (bookDescription != undefined) cardText.innerText = bookDescription;
+        if (bookDescription !== undefined) cardText.innerText = bookDescription;
 
-        /* TODO - ADD A SEE MORE THAT REDIRECTS */
+        const cardButton = document.createElement("a");
+        cardButton.type = "button";
+        cardButton.classList.add("btn");
+        cardButton.classList.add("btn-info");
+        cardButton.innerText = "See More";
+        cardButton.href = bookInfoLink;
 
-        cardBody.append(cardTitle, cardText);
+
+        cardBody.append(cardTitle, cardText, cardButton);
         card.append(cardImg, cardBody);
         cardDiv.appendChild(card);
       });
@@ -74,8 +82,8 @@ async function validateISBNAndSearchBook() {
 function Search() {
   return (
     <>
-      <h1>Search</h1>
-      <InputGroup className="mb-3" style={{ margin: "10px" }}>
+      <h1 style={{paddingLeft: "10px"}}>Search</h1>
+      <InputGroup className="mb-3" style={{ margin: "10px", width: "98vw"}}>
         <Form.Control
           id="search-input"
           placeholder="Search For Item"
@@ -87,7 +95,7 @@ function Search() {
       </InputGroup>
 
       <br></br>
-      <div id="card-div"></div>
+      <div id="card-div" style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}></div>
     </>
   );
 }
