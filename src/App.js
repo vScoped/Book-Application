@@ -1,16 +1,14 @@
+/* TODO - useContext (is the Context API https://www.w3schools.com/react/react_usecontext.asp ) for user details, new [isSignedIn, setIsSignedIn] useState(false), dark/light themes (Context API) */
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Search from "./pages/Search";
 import NoPage from "./pages/NoPage";
 import YourBooks from "./pages/YourBooks";
+import SignUpFormComponent from "./pages/SignUpFormComponent";
 
 import "./App.css";
-
-const API_KEY = "AIzaSyAZzjawqizvFq1A5EUgDH-KzKDTKHiIu9M";
-const CLIENT_ID =
-  "606450926181-l0fdedurbmeagetom0dt83bnb89itpi8.apps.googleusercontent.com";
 
 function App() {
   return (
@@ -18,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
+          <Route path="sign-up" element={<SignUpFormComponent />} />
           <Route path="search" element={<Search />} />
           <Route path="your-books" element={<YourBooks />} />
           <Route path="*" element={<NoPage />} />

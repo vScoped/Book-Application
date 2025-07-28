@@ -5,7 +5,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 const API_KEY = "AIzaSyAZzjawqizvFq1A5EUgDH-KzKDTKHiIu9M";
 // const CLIENT_ID = "606450926181-l0fdedurbmeagetom0dt83bnb89itpi8.apps.googleusercontent.com";
 
-
 async function validateISBNAndSearchBook() {
   let searchInput = document.getElementById("search-input");
 
@@ -42,6 +41,7 @@ async function validateISBNAndSearchBook() {
         card.classList.add("card");
         card.style.width = "13rem";
         card.style.margin = "20px";
+        card.style.flexWrap = "wrap";
 
         const cardImg = document.createElement("img");
         cardImg.classList.add("card-img-top");
@@ -66,7 +66,6 @@ async function validateISBNAndSearchBook() {
         cardButton.innerText = "See More";
         cardButton.href = bookInfoLink;
 
-
         cardBody.append(cardTitle, cardText, cardButton);
         card.append(cardImg, cardBody);
         cardDiv.appendChild(card);
@@ -82,8 +81,8 @@ async function validateISBNAndSearchBook() {
 function Search() {
   return (
     <>
-      <h1 style={{paddingLeft: "10px"}}>Search</h1>
-      <InputGroup className="mb-3" style={{ margin: "10px", width: "98vw"}}>
+      <h1 style={{ paddingLeft: "10px" }}>Search</h1>
+      <InputGroup className="mb-3" style={{ margin: "10px", width: "98vw" }}>
         <Form.Control
           id="search-input"
           placeholder="Search For Item"
@@ -95,7 +94,10 @@ function Search() {
       </InputGroup>
 
       <br></br>
-      <div id="card-div" style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}></div>
+      <div
+        id="card-div"
+        style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+      ></div>
     </>
   );
 }

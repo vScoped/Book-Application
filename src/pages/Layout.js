@@ -19,8 +19,8 @@ const Layout = () => {
             <Link className="nav-link" to="/your-books">
               Your Books
             </Link>
-            <Link className="nav-link" to="/login">
-              Login
+            <Link className="nav-link" to="/sign-up">
+              SignUp
             </Link>
           </Nav>
         </Container>
