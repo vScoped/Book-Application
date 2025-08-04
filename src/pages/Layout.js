@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Link className="navbar-brand" to="home">
+          <Link className="navbar-brand" to="/">
             Home
           </Link>
           <Nav className="me-auto">

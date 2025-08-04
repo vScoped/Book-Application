@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import { useNavigate } from "react-router-dom";
 /*
 function onSignIn(googleUser) {
@@ -8,18 +8,21 @@ function onSignIn(googleUser) {
   console.log("Image URL: " + profile.getImageUrl());
   console.log("Email: " + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
-*/
+*/ 
 
 function SignUpFormComponent() {
   const [name, setName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   // to redirect to main page afterwards
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setisLoggedIn(true);
+    console.log(isLoggedIn);
     navigate("/");
   };
 
